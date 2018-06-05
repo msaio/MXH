@@ -1,0 +1,11 @@
+Nội dung bài báo:
+1. Khai thác chú thích cộng đồng từ mạng xã hội Twitter.
+2. Chuẩn hóa câu truy vấn theo hướng người dùng.
+3. Kết hợp sử dụng giải thuật SoPRa  để xếp hạng kết quả tìm kiếm
+4. Xây dựng hệ thống tìm kiếm hỗ trợ người dùng tìm kiếm một cách nhanh chóng và hiệu quả (Tối ưu truy vấn) 
+
+
+Vấn đề chú trọng:
+1. Phương pháp Social Personalized Ranking (SoPRa).
+2. Giải thuật Personalized Social Query Expansion (SoQuES).
+3. Khai thác dữ liệu mạng xã hội Twitter + Kết quả thực nghiệm và đánh gía. 

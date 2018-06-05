@@ -1,0 +1,25 @@
+PTX
+- Vai trò của mạng xã hội
+- Nguồn lợi từ mạng xã hội mang lại
+- Cách thức khai thác mạng xã hội
+- Những ngôn ngữ phổ biến trong phân tích dữ liệu
+- Ngôn ngữ python trong phân tích dữ liệu
+	+ Những thư viện hỗ trợ phân tích:
+	https://techmaster.vn/posts/33518/thu-vien-lap-trinh-python
+		> NumPy
+		> Pandas
+		> matplotlib
+		> networkx
+		> ... vân vân
+	+ Cài đặt: (Trên Ubuntu)
+		(xem trên note.txt)
+
+DOC
+- Hướng dẫn phân tích dữ liệu với Python:
+	+ Numpy:
+	+ Pandas:
+	+ Network:
+	+ Những thư viên phụ khác như là matplotlib,...
+5 ví dụ bla bla.
+	
+		 

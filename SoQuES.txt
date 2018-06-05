@@ -1,0 +1,67 @@
+Giải thuật Personalized Social Query Expansion (SoQuES):
+	+ Thông thường, người dùng không thực sự biết rõ những gì mình đang tìm kiếm cho đến khi tìm thấy nó.
+	+ Nếu có biết thì người dùng cũng không biết dùng câu truy vấn nào cho phù hợp với nhu cầu.
+	=> Chuẩn hóa câu truy vấn bằng việc mở rộng nó (query expansion) là giải pháp tốt:
+		> Làm phong phú thêm cho câu truy vấn ban đầu của người dùng bằng các thông tin bổ sung có thể liên quan tới câu truy vấn ban đầu để hệ thống có thể đề xuất các kết quả phù hợp đáp ứng tốt hơn nhu cầu của người sử dụng.
+
+- Phương pháp mở rộng câu truy vấn (Query Expansion) Của Bouadjenek để chuẩn hóa câu truy vấn cho hệ thống tìm kiếm:
+	+ Vấn đề:
+		> Cho 1 câu truy vấn Q = {t1, t2, ..., tm}  được nhập bởi user u.
+		> Cung cấp cho mỗi ti thuộc Q một danh sách xếp hạng các từ khóa liên quan đến nó {ti1, ti2 ,..., tik} 
+		-> Khoảng cách giữa sự mong đợi của người dùng và kết quả trả về tự hệ thống tìm kiếm được giảm thiểu.
+	
+	*Mục tiêu ở đây:
+		> Chuyển đổi câu truy vấn Q thành câu truy vấn Q' | :
+			>> Q nhất thiết phải có trong Q'
+			>> Các kết quả của Q có trong những Q' 
+			>> Các kết quả thu được với Q': 
+				. Tăng độ chính xác của các kết quả
+				. Không làm giảm sự hài lòng của người dùng.
+
+- Giải thuật SoQuES:
+	+ Method: (Original)
+	To provide "social" and "personalized" expansion of a query term 't' with related term 'tj' -> 2 main features:
+		i.
+		> The similarity between 't' and 'tj'
+			-> Sự tương đồng
+		> The semantic strength between 't' and 'tj'
+			-> Mức độ ngữ nghĩa
+	 	ii.
+		> The similarity between 'tj' and the user profile expressing the extent to which a tag 'tj' is likely to be interesting to the considered user
+			-> Mối tương quan giữa hồ sơ cá nhân khách hàng (thông tin khách hàng về sở thích hay mối quan tâm,...) và thẻ 'tj'
+	
+	Details:
+		> User Profile -> A weighted vector pu = {wt1, wt2, ..., wtn} , wti is the utf-iuf (similar to the tf-idf measure) (Pic1)
+			-> Dữ liệu người dùng được biễu diễn bằng Vector trọng số pu với các wti là sự thể hiện cho mức độ quan trọng của thẻ ti với người dùng.  
+		> Once these two similarities are computed, a merge operation is necessary to obtain a final ranking value that indicates the similarity of 'tj' with 't'. For this we use WBF (Weighted Borda Fuse)  (Pic Equation1) 
+			-> Kết quả từ i. và ii. sẽ được hợp nhất để được 1 giá trị cuối cùng bằng việc sử dụng WBF  
+		> In order to consider specific constraints in our approach, we propose a similarity measure that takes into account the credibility of entities in a folksonomy based on their popularity obtained using SPR.
+			-> Xem xét các ràng buộc cụ thể bằng phép đo SPR (Social Page Rank) (PDF ThamKhaoSPR.pdf)	
+		> Use User-Tag graph, to compute the similarity between tags (inspired from Jaccard Similarity) using Formula2 (Pic Formula2)
+			-> Tính toán sự tương đồng giữa các tags 
+
+	+ Algorithms: Pic Algorithm
+		Explain:
+			Graph G; u: A user; Q: A Querry	
+		> Line 1: Getting the user's profile as explained above
+			-> Gán thông tin người dùng cho Pu[m]
+		> Line 2: The purpose is to enrich each term ti of Q with related terms
+			-> Khởi tạo vòng lặp với tất cả tag ti thuộc Q 
+		> line 3: Then, the objective is to get all the neighboring tags tj of ti in the tag graph Gtag 
+			-> gán danh sách các tag tj kề với tag ti trong Gtag bằng danh sách l
+		> line 4: Compute for each tj with loop
+			-> Khởi tạo vòng lặp với từng tj
+		> line 5: the ranking value of tj that indicates its similarity with ti
+			-> Gán giá trị xếp hạng của tj bằng độ đo sự tương đồng của tj với ti của user u. 
+		> line 6: The neighborhood list has to be sorted according to the value of Rank[tj] and keep only the top tags 
+			-> Sort danh sách l sau đó lọc ra giá trị rank tj lớn nhất và giữ lại.
+		> line 7: ti and its remaining neighbors must be linked with the OR(V) logical connector 
+			-> Sử dụng phép: "ti" OR "danh sách l" 
+		> line 8: Updates Q'
+			-> Cập nhật 
+		> line 9: Return Q'
+			-> Trả về giá trị Q'
+		Example:
+			Q = t1 ∧ t2 ∧ ... ∧ tm sau khi mở rộng sẽ trở thành:
+			Q' = (t1 ∨ t11 ∨ t12 ∨ ... ∨ t1l) ∧ (t2 ∨ t21 ∨ t22 ∨ ... ∨ t2k) ∧ ... ∧ (tm ∨ tm1 ∨ tm2 ∨ ... ∨ tmr)  
+				

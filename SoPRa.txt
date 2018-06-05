@@ -1,0 +1,32 @@
+Phương pháp Social Personalized Ranking (SoPRa):
+	+ Phương pháp xếp hạng trang web theo hướng người dùng. 
+	+ Cách tiếp cận là khai thác chú thích cộng trong ngữ cảnh "folksonomies".
+
+- SoPRa xếp hạng trang web dựa trên 2 yếu tố chính:
+	+ Độ tương đồng giữa nội dung trang web với câu truy vấn
+		> Dựa trên độ tương đồng về nội dung văn bản (texting matching score) : Thể hiện sự tương đồng giữa nội dung trang web với câu truy vấn 
+		> Dựa trên độ tương đồng về các yếu tố xã hội (Social matching score) : Thể hiện sự tương đồng giữa "Social representation" với câu truy vấn.
+			>> Social Representation: có nghĩa là những thứ mang tính chất xã hội.
+			>> Social Representation được thể hiện thông qua các chú thích được dùng để đánh dấu trên trang web.
+			>> Pic Function1  (1) 
+		
+	+ Mức độ quan tâm của người dùng đối với các trang web:
+		+ Độ đo về mối quan tâm của người dùng (social interest score) đối với các trang web. (2*)
+		+ Được tính bằng độ tương đồng về thông tin người dùng với các chú thích của trang web (social representation of a document)
+	
+- Độ đo mối quan tâm người dùng (2*) + (1) => Thứ hạng tìm kiếm.
+- Công thức tính độ đo của một trang web d phù hợp với câu truy vấn q, được tìm kiếm bởi người dùng u:
+	-> Pic Function2 (2) 
+
+=> SoPRa xếp hạng trang web thông qua:
+	+ Độ tương đồng về mặt nội dung trang web với câu truy vân.
+	+ Độ tương đồng về mặt xã hội (social) của trang web với câu truy vấn.
+	+ Độ quan tâm của người dùng đối với trang web.
+
+* Ngoài ra: Thông tin người dùng và chỉsố "Social Representation" của trang web được tính toán dựa trên:
+	+ Các chú thích xã hội mà liên kết với nó.
+	+ Được mô hình trong không gian vector (Vector Space Model). (Nếu chúng ta xem các trang hoặc người dùng như những tài liệu và những chú thích như các từ, thì câc thiết lập là đúng cho VSM.
+		> Một trong những điểm quan trọng của trong VSM là trọng số của các từ.
+		> Trọng số của các chú thích xã hội được tính bằng phương pháp tf-idf ( Term Frequency-Inverse Document Frequency ):
+			Pic Function3 (3)
+ 

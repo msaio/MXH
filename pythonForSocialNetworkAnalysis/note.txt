@@ -1,0 +1,22 @@
+- Install python-pip (not recommended)
+
+Mac dinh khi tai cac module ve bang lenh sudo, cac module chi dc cai vao python2 neu muon su dung trong python3 can dung toi pip3
+- Install python-networkx 
+- Install python-pandas
+- Install python-numpy:
+
+In networkx 2.0 " from_pandas_dataframe " has been removed. 
+Instead you can use " from_pandas_edgelist "
+
+download:
+https://raw.githubusercontent.com/Yanhao29/UM_DataSciWithPython_5/master/chess_graph.txt
+
+
+- Quy trình cài đặt môi trường làm việc trên Ubuntu:
+	+ Cài đặt python 2.7 (Hiện tại Jupyter-notebook chỉ hỗ trợ python 2)
+	+ Cài đặt các thư viện hỗ trợ:
+		> networkx
+		> pandas
+		> numpy
+	+ Cài đặt IDE: Jupyter-Notebook:
+	+ Sử dụng lênh: "jupyter-notebook" để sử dụng IDE.
